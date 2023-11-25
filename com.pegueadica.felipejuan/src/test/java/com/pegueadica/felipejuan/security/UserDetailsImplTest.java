@@ -32,7 +32,6 @@ public class UserDetailsImplTest {
 
         // Create UserDetailsImpl object
         UserDetailsImpl userDetails = new UserDetailsImpl(user);
-        userDetails.authorities = authorities;
 
         // Test methods
         assertEquals(username, userDetails.getUsername());
