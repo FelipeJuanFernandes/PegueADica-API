@@ -1,5 +1,6 @@
 package com.pegueadica.felipejuan.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,8 @@ public class ComentarioController {
 	}	
 
 	
-	@PutMapping
-	public ResponseEntity<Comentario> put(@RequestBody Comentario comentario)
+	@PutMapping("/{id}")
+	public ResponseEntity<Comentario> put(@PathVariable long id, @RequestBody Comentario comentario)
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(comentario));
 	}
@@ -62,3 +63,4 @@ public class ComentarioController {
 		repository.deleteById(id);
 	}
 }
+
