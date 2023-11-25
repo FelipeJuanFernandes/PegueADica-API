@@ -5,11 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.pegueadica.felipejuan.model.Usuario;
 import com.pegueadica.felipejuan.repository.UsuarioRepository;
 
-@Configuration
+
 @EnableWebSecurity
 public class BasicSecurityConfig implements UserDetailsService {
 
@@ -50,10 +48,6 @@ public class BasicSecurityConfig implements UserDetailsService {
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         		.and().cors()
         		.and().csrf().disable()
-                .formLogin()
-                .and()
-                .oauth2Login()           
-                .and()
                 .build();
     }
 	
@@ -66,9 +60,4 @@ public class BasicSecurityConfig implements UserDetailsService {
 	    return new org.springframework.security.core.userdetails.User(user.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + usuario)).getUsuario(), user.get().getSenha(), new ArrayList<>());
 	}
 
-	
-	@Bean
-	protected WebSecurityCustomizer webSecurityCustomizer(){
-	    return (web) -> web.ignoring().antMatchers("/swagger-ui.hmtl", "/v3/api-docs/**");
-	}
 }

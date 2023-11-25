@@ -15,15 +15,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "tb_postagem")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Postagem.class)
 public class Postagem {
 
 	@Id
@@ -59,8 +55,7 @@ public class Postagem {
 	private Interesse interesse;
 
 	@ManyToOne
-	@JsonIdentityReference(alwaysAsId = true)
-	@JsonIgnore
+	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 
 	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)

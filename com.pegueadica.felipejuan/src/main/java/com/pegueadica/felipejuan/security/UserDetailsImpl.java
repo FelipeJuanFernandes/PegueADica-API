@@ -11,7 +11,7 @@ public class UserDetailsImpl {
 
 	private String userName;
 	private String password;
-	List<GrantedAuthority> authorities;
+	private List<GrantedAuthority> authorities;
 
 	public UserDetailsImpl(Usuario user) {
 		this.userName = user.getUsuario();

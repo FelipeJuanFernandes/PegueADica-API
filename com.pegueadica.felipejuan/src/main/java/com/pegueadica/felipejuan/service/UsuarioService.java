@@ -2,11 +2,11 @@ package com.pegueadica.felipejuan.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
-
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 import com.pegueadica.felipejuan.model.Usuario;
 import com.pegueadica.felipejuan.model.UsuarioLogin;
@@ -42,6 +42,7 @@ public class UsuarioService {
 				user.get().setToken(authHeader);
 				user.get().setNome(usuario.get().getNome());
 				user.get().setId(usuario.get().getId());
+				user.get().setFoto(usuario.get().getFoto());
 				user.get().setAdmin(usuario.get().isAdmin());
 
 				return user;
